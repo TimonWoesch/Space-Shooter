@@ -98,9 +98,9 @@ class SceneMain extends Phaser.Scene {
     this.enemyLasers = this.add.group();
     this.playerLasers = this.add.group();
 
-    //Enemy spawn rate
+    //Enemy spawn
     this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback: function() {
         var enemy = null;
         //Difficulty scaling
@@ -108,6 +108,7 @@ class SceneMain extends Phaser.Scene {
 
         //Generate Enemies
         for (var i=0; i<=diff_scale;i++) {
+          //GUNSHIP
           if (Phaser.Math.Between(0, 10) >= 3) {
             enemy = new GunShip(
                 this,
@@ -115,8 +116,8 @@ class SceneMain extends Phaser.Scene {
                 0
             );
           } else if (Phaser.Math.Between(0, 10) >= 5) {
+            //CHASERSHIP
             if (this.getEnemiesByType("ChaserShip").length < 5) {
-
               enemy = new ChaserShip(
                   this,
                   Phaser.Math.Between(0, this.game.config.width),
@@ -124,6 +125,7 @@ class SceneMain extends Phaser.Scene {
               );
             }
           } else {
+            //CARRIERSHIP
             enemy = new CarrierShip(
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
@@ -131,6 +133,7 @@ class SceneMain extends Phaser.Scene {
             );
           }
 
+          //spawn
           if (enemy !== null) {
             enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
             this.enemies.add(enemy);
