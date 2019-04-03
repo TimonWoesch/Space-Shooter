@@ -30,6 +30,11 @@ class SceneMain extends Phaser.Scene {
   }
 
   create() {
+    //Init Score
+    var score = 0;
+    var scoreText;
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#d1ced6'});
+
 
     this.anims.create({
       key: "sprEnemy0",
@@ -88,7 +93,7 @@ class SceneMain extends Phaser.Scene {
     this.enemyLasers = this.add.group();
     this.playerLasers = this.add.group();
 
-
+    //Enemy spawn rate
     this.time.addEvent({
       delay: 1000,
       callback: function() {
@@ -128,7 +133,7 @@ class SceneMain extends Phaser.Scene {
       loop: true
     });
 
-
+    //Player hits Enemy
     this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
       if (enemy) {
         if (enemy.onDestroy !== undefined) {
@@ -137,6 +142,9 @@ class SceneMain extends Phaser.Scene {
         enemy.explode(true);
         playerLaser.destroy();
 
+        //Update Score
+        score+=10;
+        scoreText.setText('Score: ' + score);
       }
     });
 
