@@ -35,7 +35,7 @@ class SceneMain extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#d1ced6'});
 
-
+    //create animations
     this.anims.create({
       key: "sprEnemy0",
       frames: this.anims.generateFrameNumbers("sprEnemy0"),
@@ -61,6 +61,7 @@ class SceneMain extends Phaser.Scene {
       repeat: -1
     });
 
+    //create sounds
     this.sfx = {
       explosions: [
         this.sound.add("sndExplode0"),
@@ -69,12 +70,14 @@ class SceneMain extends Phaser.Scene {
       laser: this.sound.add("sndLaser")
     };
 
+    //create background
     this.backgrounds = [];
     for (var i = 0; i < 5; i++) {
       var bg = new ScrollingBackground(this, "sprBg0", i * 10);
       this.backgrounds.push(bg);
     }
 
+    //init player
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
@@ -83,57 +86,62 @@ class SceneMain extends Phaser.Scene {
     );
     console.log(this.player);
 
+    //init keys
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+    //grouping
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
     this.playerLasers = this.add.group();
 
     //Enemy spawn rate
     this.time.addEvent({
-      delay: 1000,
+      delay: 2000,
       callback: function() {
         var enemy = null;
+        //Difficulty scaling
+        var diff_scale = score/100;
 
-        if (Phaser.Math.Between(0, 10) >= 3) {
-          enemy = new GunShip(
-            this,
-            Phaser.Math.Between(0, this.game.config.width),
-            0
-          );
-        }
-        else if (Phaser.Math.Between(0, 10) >= 5) {
-          if (this.getEnemiesByType("ChaserShip").length < 5) {
-    
-            enemy = new ChaserShip(
-              this,
-              Phaser.Math.Between(0, this.game.config.width),
-              0
+        //Generate Enemies
+        for (var i=0; i<=diff_scale;i++) {
+          if (Phaser.Math.Between(0, 10) >= 3) {
+            enemy = new GunShip(
+                this,
+                Phaser.Math.Between(0, this.game.config.width),
+                0
+            );
+          } else if (Phaser.Math.Between(0, 10) >= 5) {
+            if (this.getEnemiesByType("ChaserShip").length < 5) {
+
+              enemy = new ChaserShip(
+                  this,
+                  Phaser.Math.Between(0, this.game.config.width),
+                  0
+              );
+            }
+          } else {
+            enemy = new CarrierShip(
+                this,
+                Phaser.Math.Between(0, this.game.config.width),
+                0
             );
           }
-        }
-        else {
-          enemy = new CarrierShip(
-            this,
-            Phaser.Math.Between(0, this.game.config.width),
-            0
-          );
-        }
-    
-        if (enemy !== null) {
-          enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
-          this.enemies.add(enemy);
+
+          if (enemy !== null) {
+            enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
+            this.enemies.add(enemy);
+          }
         }
       },
       callbackScope: this,
       loop: true
     });
 
-    //Player hits Enemy
+    //Player hits Enemy with laser
     this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
       if (enemy) {
         if (enemy.onDestroy !== undefined) {
@@ -148,6 +156,7 @@ class SceneMain extends Phaser.Scene {
       }
     });
 
+    //Player and enemy collide
     this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
       if (!player.getData("isDead") &&
           !enemy.getData("isDead")) {
@@ -157,6 +166,7 @@ class SceneMain extends Phaser.Scene {
       }
     });
 
+    //Player gets hit by enemy laser
     this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
       if (!player.getData("isDead") &&
           !laser.getData("isDead")) {

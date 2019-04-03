@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e2530f4-c02f-4e98-bcad-2a01cd522b96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0e2530f4-c02f-4e98-bcad-2a01cd522b96" name="Default Changelist" comment="Added a Score">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/SceneMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/SceneMain.js" afterDir="false" />
     </list>
@@ -16,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor" />
@@ -29,6 +28,7 @@
               <caret line="155" column="29" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
               <folding>
                 <element signature="n#Entity#0" />
+                <element signature="n#!!block;n#constructor#0;n#Entity#0" />
                 <element signature="n#!!block;n#explode#0;n#Entity#0" />
                 <element signature="n#Player#0" />
                 <element signature="n#!!block;n#constructor#0;n#Player#0" />
@@ -52,20 +52,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/SceneMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="146" column="45" selection-start-line="146" selection-start-column="45" selection-end-line="146" selection-end-column="45" />
+            <state relative-caret-position="107">
+              <caret line="108" column="26" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#SceneMain#0" />
                 <element signature="n#!!block;n#preload#0;n#SceneMain#0" />
-                <element signature="e#1010#1139#0" />
-                <element signature="e#1164#1293#0" />
-                <element signature="e#1318#1452#0" />
-                <element signature="e#1477#1606#0" />
-                <element signature="e#1625#1778#0" />
-                <element signature="e#1840#1944#0" />
-                <element signature="e#2660#3586#0" />
-                <element signature="e#3944#4124#0" />
-                <element signature="e#4212#4388#0" />
+                <element signature="e#3135#3981#0" />
                 <element signature="n#!!block;n#getEnemiesByType#0;n#SceneMain#0" />
                 <element signature="n#!!block;n#update#0;n#SceneMain#0" />
               </folding>
@@ -77,6 +69,24 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -144,12 +154,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554292945087</updated>
-      <workItem from="1554292948301" duration="6396000" />
+      <workItem from="1554292948301" duration="8956000" />
     </task>
+    <task id="LOCAL-00001" summary="Added a Score">
+      <created>1554299429319</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554299429319</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6396000" />
+    <option name="totallyTimeSpent" value="8956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="0" width="885" height="878" extended-state="0" />
@@ -159,7 +177,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21436985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Version Control" weight="0.328877" />
       <window_info anchor="bottom" id="Terminal" weight="0.328877" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -177,8 +195,35 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Added a Score" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a Score" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
@@ -190,6 +235,7 @@
           <caret line="155" column="29" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
           <folding>
             <element signature="n#Entity#0" />
+            <element signature="n#!!block;n#constructor#0;n#Entity#0" />
             <element signature="n#!!block;n#explode#0;n#Entity#0" />
             <element signature="n#Player#0" />
             <element signature="n#!!block;n#constructor#0;n#Player#0" />
@@ -211,20 +257,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/SceneMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="146" column="45" selection-start-line="146" selection-start-column="45" selection-end-line="146" selection-end-column="45" />
+        <state relative-caret-position="107">
+          <caret line="108" column="26" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#SceneMain#0" />
             <element signature="n#!!block;n#preload#0;n#SceneMain#0" />
-            <element signature="e#1010#1139#0" />
-            <element signature="e#1164#1293#0" />
-            <element signature="e#1318#1452#0" />
-            <element signature="e#1477#1606#0" />
-            <element signature="e#1625#1778#0" />
-            <element signature="e#1840#1944#0" />
-            <element signature="e#2660#3586#0" />
-            <element signature="e#3944#4124#0" />
-            <element signature="e#4212#4388#0" />
+            <element signature="e#3135#3981#0" />
             <element signature="n#!!block;n#getEnemiesByType#0;n#SceneMain#0" />
             <element signature="n#!!block;n#update#0;n#SceneMain#0" />
           </folding>
