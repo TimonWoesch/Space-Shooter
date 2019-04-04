@@ -35,6 +35,10 @@ class SceneMain extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#d1ced6'});
 
+    var playerLife = 3;
+    var lifeText;
+    lifeText = this.add.text(300, 16, 'Lifes: 3', { fontSize: '32px', fill: '#d1ced6'});
+
     //create animations
     this.anims.create({
       key: "sprEnemy0",
@@ -178,6 +182,14 @@ class SceneMain extends Phaser.Scene {
         }
         //Kill anyway even if the enemy has still lifes left
         enemy.explode(true);
+
+        //Update Score
+        score+=10;
+        scoreText.setText('Score: ' + score);
+
+        //Update Player Lifes
+        playerLife--;
+        lifeText.setText('Lifes: ' + playerLife);
       }
     });
 
@@ -192,6 +204,10 @@ class SceneMain extends Phaser.Scene {
           player.onDestroy();
         }
         laser.destroy();
+
+        //Update Player Lifes
+        playerLife--;
+        lifeText.setText('Lifes: ' + playerLife);
       }
     });
   }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/js/SceneMain.js" line="84" />
+    <bookmark url="file://$PROJECT_DIR$/js/SceneMain.js" line="88" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e2530f4-c02f-4e98-bcad-2a01cd522b96" name="Default Changelist" comment="Added a Score">
+    <list default="true" id="0e2530f4-c02f-4e98-bcad-2a01cd522b96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Entity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/SceneMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/SceneMain.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -51,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/SceneMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="862">
-              <caret line="174" column="40" lean-forward="true" selection-start-line="174" selection-start-column="40" selection-end-line="174" selection-end-column="40" />
+            <state relative-caret-position="1117">
+              <caret line="212" column="3" lean-forward="true" selection-start-line="212" selection-start-column="3" selection-end-line="212" selection-end-column="3" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#SceneMain#0" />
                 <element signature="n#!!block;n#preload#0;n#SceneMain#0" />
@@ -63,6 +62,7 @@
                 <element signature="e#1814#1967#0" />
                 <element signature="e#2053#2157#0" />
                 <element signature="e#2940#4143#0" />
+                <element signature="e#4485#4858#0" />
                 <element signature="n#!!block;n#getEnemiesByType#0;n#SceneMain#0" />
                 <element signature="n#!!block;n#update#0;n#SceneMain#0" />
               </folding>
@@ -162,7 +162,7 @@
       <updated>1554292945087</updated>
       <workItem from="1554292948301" duration="8956000" />
       <workItem from="1554310614482" duration="497000" />
-      <workItem from="1554361517173" duration="1701000" />
+      <workItem from="1554361517173" duration="2187000" />
     </task>
     <task id="LOCAL-00001" summary="Added a Score">
       <created>1554299429319</created>
@@ -171,11 +171,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554299429319</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Lifes to enemys and the Player">
+      <created>1554363257575</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554363257575</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11154000" />
+    <option name="totallyTimeSpent" value="11640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="2062" height="1416" extended-state="0" />
@@ -245,7 +252,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added a Score" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a Score" />
+    <MESSAGE value="Added Lifes to enemys and the Player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Lifes to enemys and the Player" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
@@ -274,8 +282,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/SceneMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="862">
-          <caret line="174" column="40" lean-forward="true" selection-start-line="174" selection-start-column="40" selection-end-line="174" selection-end-column="40" />
+        <state relative-caret-position="1117">
+          <caret line="212" column="3" lean-forward="true" selection-start-line="212" selection-start-column="3" selection-end-line="212" selection-end-column="3" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#SceneMain#0" />
             <element signature="n#!!block;n#preload#0;n#SceneMain#0" />
@@ -286,6 +294,7 @@
             <element signature="e#1814#1967#0" />
             <element signature="e#2053#2157#0" />
             <element signature="e#2940#4143#0" />
+            <element signature="e#4485#4858#0" />
             <element signature="n#!!block;n#getEnemiesByType#0;n#SceneMain#0" />
             <element signature="n#!!block;n#update#0;n#SceneMain#0" />
           </folding>
