@@ -79,10 +79,11 @@ class SceneMain extends Phaser.Scene {
 
     //init player
     this.player = new Player(
-      this,
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "sprPlayer"
+        this,
+        this.game.config.width * 0.5,
+        this.game.config.height * 0.5,
+        "sprPlayer",
+        3
     );
     console.log(this.player);
 
@@ -113,7 +114,8 @@ class SceneMain extends Phaser.Scene {
             enemy = new GunShip(
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
-                0
+                0,
+                1
             );
           } else if (Phaser.Math.Between(0, 10) >= 5) {
             //CHASERSHIP
@@ -121,7 +123,8 @@ class SceneMain extends Phaser.Scene {
               enemy = new ChaserShip(
                   this,
                   Phaser.Math.Between(0, this.game.config.width),
-                  0
+                  0,
+                  1
               );
             }
           } else {
@@ -129,7 +132,8 @@ class SceneMain extends Phaser.Scene {
             enemy = new CarrierShip(
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
-                0
+                0,
+                1
             );
           }
 
@@ -146,7 +150,10 @@ class SceneMain extends Phaser.Scene {
 
     //Player hits Enemy with laser
     this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
-      if (enemy) {
+      //Set Life -1
+      enemy.setData("Lifes", enemy.getData("Lifes")-1);
+
+      if (enemy && enemy.getData("Lifes")<=0) {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
         }
@@ -161,20 +168,29 @@ class SceneMain extends Phaser.Scene {
 
     //Player and enemy collide
     this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
-      if (!player.getData("isDead") &&
-          !enemy.getData("isDead")) {
-        player.explode(false);
-        player.onDestroy();
+      if (!player.getData("isDead") && !enemy.getData("isDead")) {
+        //Set Life -1
+        player.setData("Lifes", player.getData("Lifes")-1);
+
+        if(player.getData("Lifes")<=0) {
+          player.explode(false);
+          player.onDestroy();
+        }
+        //Kill anyway even if the enemy has still lifes left
         enemy.explode(true);
       }
     });
 
     //Player gets hit by enemy laser
     this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
-      if (!player.getData("isDead") &&
-          !laser.getData("isDead")) {
-        player.explode(false);
-        player.onDestroy();
+      if (!player.getData("isDead") && !laser.getData("isDead")) {
+        //Set Life -1
+        player.setData("Lifes", player.getData("Lifes")-1);
+
+        if(player.getData("Lifes")<=0) {
+          player.explode(false);
+          player.onDestroy();
+        }
         laser.destroy();
       }
     });

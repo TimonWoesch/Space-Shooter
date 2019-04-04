@@ -7,6 +7,9 @@ class Entity extends Phaser.GameObjects.Sprite {
         this.scene.physics.world.enableBody(this, 0);
         this.setData("type", type);
         this.setData("isDead", false);
+
+        //set Default Lifes
+        this.setData("Lifes", 1);
     }
 
     explode(canDestroy) {
@@ -37,7 +40,7 @@ class Entity extends Phaser.GameObjects.Sprite {
 }
 
 class Player extends Entity {
-    constructor(scene, x, y, key) {
+    constructor(scene, x, y, key, lifes) {
         super(scene, x, y, key, "Player");
 
         this.setData("speed", 200);
@@ -45,6 +48,9 @@ class Player extends Entity {
         this.setData("isShooting", false);
         this.setData("timerShootDelay", 10);
         this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+
+        //set Lifes
+        this.setData("Lifes", lifes);
     }
 
     moveUp() {
@@ -61,14 +67,16 @@ class Player extends Entity {
     }
 
     onDestroy() {
+
         this.scene.time.addEvent({ // go to game over scene
             delay: 1000,
-            callback: function() {
+            callback: function () {
                 this.scene.scene.start("SceneGameOver");
             },
             callbackScope: this,
             loop: false
         });
+
     }
 
     update() {
@@ -106,7 +114,7 @@ class EnemyLaser extends Entity {
 }
 
 class ChaserShip extends Entity {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, lifes) {
         super(scene, x, y, "sprEnemy1", "ChaserShip");
 
         this.body.velocity.y = Phaser.Math.Between(50, 100);
@@ -116,6 +124,9 @@ class ChaserShip extends Entity {
             CHASE: "CHASE"
         };
         this.state = this.states.MOVE_DOWN;
+
+        //set Lifes
+        this.setData("Lifes", lifes);
     }
 
     update() {
@@ -154,7 +165,7 @@ class ChaserShip extends Entity {
 }
 
 class GunShip extends Entity {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, lifes) {
         super(scene, x, y, "sprEnemy0", "GunShip");
         this.play("sprEnemy0");
 
@@ -174,6 +185,9 @@ class GunShip extends Entity {
             callbackScope: this,
             loop: true
         });
+
+        //set Lifes
+        this.setData("Lifes", lifes);
     }
 
     onDestroy() {
@@ -186,11 +200,14 @@ class GunShip extends Entity {
 }
 
 class CarrierShip extends Entity {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, lifes) {
         super(scene, x, y, "sprEnemy2", "CarrierShip");
         this.play("sprEnemy2");
 
         this.body.velocity.y = Phaser.Math.Between(50, 100);
+
+        //set Lifes
+        this.setData("Lifes", lifes);
     }
 }
 
