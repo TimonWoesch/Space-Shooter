@@ -2,9 +2,9 @@ class SceneGameOver extends Phaser.Scene {
   constructor() {
     super({ key: "SceneGameOver" });
   }
-  create() {
+  create(points) {
 
-    this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
+    this.title = this.add.text(this.game.config.width * 0.5, this.game.config.height * 0.25, "GAME OVER", {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',
@@ -18,9 +18,12 @@ class SceneGameOver extends Phaser.Scene {
       btnDown: this.sound.add("sndBtnDown")
     };
 
+    //Display Points
+    this.add.text(this.game.config.width * 0.275, this.game.config.height * 0.5, 'Points: '+points, { fontSize: '32px', fill: '#d1ced6'});
+
     this.btnRestart = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
+      this.game.config.height * 0.75,
       "sprBtnRestart"
     );
 

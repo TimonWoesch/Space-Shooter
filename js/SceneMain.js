@@ -35,6 +35,10 @@ class SceneMain extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#d1ced6'});
 
+    var playerLife = 3;
+    var lifeText;
+    lifeText = this.add.text(300, 16, 'Lifes: 3', { fontSize: '32px', fill: '#d1ced6'});
+
     //create animations
     this.anims.create({
       key: "sprEnemy0",
@@ -79,10 +83,11 @@ class SceneMain extends Phaser.Scene {
 
     //init player
     this.player = new Player(
-      this,
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "sprPlayer"
+        this,
+        this.game.config.width * 0.5,
+        this.game.config.height * 0.5,
+        "sprPlayer",
+        3
     );
     console.log(this.player);
 
@@ -98,9 +103,9 @@ class SceneMain extends Phaser.Scene {
     this.enemyLasers = this.add.group();
     this.playerLasers = this.add.group();
 
-    //Enemy spawn rate
+    //Enemy spawn
     this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback: function() {
         var enemy = null;
         //Difficulty scaling
@@ -108,29 +113,35 @@ class SceneMain extends Phaser.Scene {
 
         //Generate Enemies
         for (var i=0; i<=diff_scale;i++) {
+          //GUNSHIP
           if (Phaser.Math.Between(0, 10) >= 3) {
             enemy = new GunShip(
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
-                0
+                0,
+                1
             );
           } else if (Phaser.Math.Between(0, 10) >= 5) {
+            //CHASERSHIP
             if (this.getEnemiesByType("ChaserShip").length < 5) {
-
               enemy = new ChaserShip(
                   this,
                   Phaser.Math.Between(0, this.game.config.width),
-                  0
+                  0,
+                  1
               );
             }
           } else {
+            //CARRIERSHIP
             enemy = new CarrierShip(
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
-                0
+                0,
+                1
             );
           }
 
+          //spawn
           if (enemy !== null) {
             enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
             this.enemies.add(enemy);
@@ -143,7 +154,10 @@ class SceneMain extends Phaser.Scene {
 
     //Player hits Enemy with laser
     this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
-      if (enemy) {
+      //Set Life -1
+      enemy.setData("Lifes", enemy.getData("Lifes")-1);
+
+      if (enemy && enemy.getData("Lifes")<=0) {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
         }
@@ -158,21 +172,42 @@ class SceneMain extends Phaser.Scene {
 
     //Player and enemy collide
     this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
-      if (!player.getData("isDead") &&
-          !enemy.getData("isDead")) {
-        player.explode(false);
-        player.onDestroy();
+      if (!player.getData("isDead") && !enemy.getData("isDead")) {
+        //Set Life -1
+        player.setData("Lifes", player.getData("Lifes")-1);
+
+        if(player.getData("Lifes")<=0) {
+          player.explode(false);
+          player.onDestroy(score);
+        }
+        //Kill anyway even if the enemy has still lifes left
         enemy.explode(true);
+
+        //Update Score
+        score+=10;
+        scoreText.setText('Score: ' + score);
+
+        //Update Player Lifes
+        playerLife--;
+        lifeText.setText('Lifes: ' + playerLife);
       }
     });
 
     //Player gets hit by enemy laser
     this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
-      if (!player.getData("isDead") &&
-          !laser.getData("isDead")) {
-        player.explode(false);
-        player.onDestroy();
+      if (!player.getData("isDead") && !laser.getData("isDead")) {
+        //Set Life -1
+        player.setData("Lifes", player.getData("Lifes")-1);
+
+        if(player.getData("Lifes")<=0) {
+          player.explode(false);
+          player.onDestroy(score);
+        }
         laser.destroy();
+
+        //Update Player Lifes
+        playerLife--;
+        lifeText.setText('Lifes: ' + playerLife);
       }
     });
   }
