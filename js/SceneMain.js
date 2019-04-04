@@ -178,7 +178,7 @@ class SceneMain extends Phaser.Scene {
 
         if(player.getData("Lifes")<=0) {
           player.explode(false);
-          player.onDestroy();
+          player.onDestroy(score);
         }
         //Kill anyway even if the enemy has still lifes left
         enemy.explode(true);
@@ -201,7 +201,7 @@ class SceneMain extends Phaser.Scene {
 
         if(player.getData("Lifes")<=0) {
           player.explode(false);
-          player.onDestroy();
+          player.onDestroy(score);
         }
         laser.destroy();
 
