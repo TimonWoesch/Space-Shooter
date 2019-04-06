@@ -35,6 +35,8 @@ class SceneMain extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#d1ced6'});
 
+    var enemyLife;
+
     var playerLife = 3;
     var lifeText;
     lifeText = this.add.text(300, 16, 'Lifes: 3', { fontSize: '32px', fill: '#d1ced6'});
@@ -110,6 +112,12 @@ class SceneMain extends Phaser.Scene {
         var enemy = null;
         //Difficulty scaling
         var diff_scale = score/100;
+        enemyLife = 1;
+
+        while (diff_scale > 10) {
+          diff_scale-=10;
+          enemyLife++;
+        }
 
         //Generate Enemies
         for (var i=0; i<=diff_scale;i++) {
@@ -119,7 +127,7 @@ class SceneMain extends Phaser.Scene {
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
                 0,
-                2
+                enemyLife
             );
           } else if (Phaser.Math.Between(0, 10) >= 5) {
             //CHASERSHIP
@@ -128,7 +136,7 @@ class SceneMain extends Phaser.Scene {
                   this,
                   Phaser.Math.Between(0, this.game.config.width),
                   0,
-                  2
+                  enemyLife
               );
             }
           } else {
@@ -137,7 +145,7 @@ class SceneMain extends Phaser.Scene {
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
                 0,
-                2
+                enemyLife
             );
           }
 
