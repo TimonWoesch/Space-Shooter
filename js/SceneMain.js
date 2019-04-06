@@ -119,7 +119,7 @@ class SceneMain extends Phaser.Scene {
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
                 0,
-                1
+                2
             );
           } else if (Phaser.Math.Between(0, 10) >= 5) {
             //CHASERSHIP
@@ -128,7 +128,7 @@ class SceneMain extends Phaser.Scene {
                   this,
                   Phaser.Math.Between(0, this.game.config.width),
                   0,
-                  1
+                  2
               );
             }
           } else {
@@ -137,7 +137,7 @@ class SceneMain extends Phaser.Scene {
                 this,
                 Phaser.Math.Between(0, this.game.config.width),
                 0,
-                1
+                2
             );
           }
 
@@ -153,16 +153,17 @@ class SceneMain extends Phaser.Scene {
     });
 
     //Player hits Enemy with laser
-    this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
+    this.physics.add.overlap(this.playerLasers, this.enemies, function(playerLaser, enemy) {
       //Set Life -1
       enemy.setData("Lifes", enemy.getData("Lifes")-1);
+      playerLaser.destroy();
 
-      if (enemy && enemy.getData("Lifes")<=0) {
+      if (enemy && enemy.getData("Lifes")<=0 && !enemy.getData("isDead")) {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
         }
         enemy.explode(true);
-        playerLaser.destroy();
+
 
         //Update Score
         score+=10;
